@@ -11,12 +11,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final int segmento = 0;
+        final int segmento = 1;
 
         PorquinhoComponent porquinhoComponent = new PorquinhoComponent(new PorquinhoView() {
             @Override
             public void actionInvista() {
                 Log.v("actionInvista", "actionInvista");
+            }
+
+            @Override
+            public void actionAbrir() {
+                Log.v("actionAbrir", "actionAbrir");
+            }
+
+            @Override
+            public void actionFechar() {
+                Log.v("actionFechar", "actionFechar");
             }
 
             @Override

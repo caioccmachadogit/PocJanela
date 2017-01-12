@@ -8,6 +8,10 @@ public interface PorquinhoView {
 
     void actionInvista();
 
+    void actionAbrir();
+
+    void actionFechar();
+
     int getAjusteTelaHeight();
 
     int getSegmento();

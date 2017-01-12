@@ -170,6 +170,7 @@ public class PorquinhoComponent {
         animateLayoutParams(touchHeight, tamanhoTela70Perc);
         setBackgroundAbaFechar(enumSegmento);
         containerAberto = true;
+        porquinhoView.actionAbrir();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -177,6 +178,7 @@ public class PorquinhoComponent {
         animateLayoutParams(touchHeight, buttonLinguaTopHeight);
         setBackgroundAbaAbrir(enumSegmento);
         containerAberto = false;
+        porquinhoView.actionFechar();
     }
 
     private void calcularMetricas() {
@@ -233,7 +235,7 @@ public class PorquinhoComponent {
     }
 
 
-    public void setBackgroundAbaFechar(EnumSegmento enumSegmento) {
+    private void setBackgroundAbaFechar(EnumSegmento enumSegmento) {
         switch (enumSegmento){
 
             case USER_CLASSIC:
@@ -246,7 +248,7 @@ public class PorquinhoComponent {
         }
     }
 
-    public void setBackgroundAbaAbrir(EnumSegmento enumSegmento) {
+    private void setBackgroundAbaAbrir(EnumSegmento enumSegmento) {
         switch (enumSegmento){
 
             case USER_CLASSIC:
