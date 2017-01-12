@@ -22,19 +22,19 @@
     <LinearLayout
         android:layout_below="@id/container"
         android:orientation="vertical"
-        android:id="@+id/linear_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <View
-            android:background="#990000"
+            android:id="@+id/linear_line"
+            android:background="#000"
             android:layout_width="match_parent"
             android:layout_height="2dp"/>
 
         <Button
             android:layout_gravity="center"
             android:background="@drawable/aba_push_porquinho_abrir_select"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="19dp"
             android:id="@+id/button" />
 

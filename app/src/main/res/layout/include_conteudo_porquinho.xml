@@ -33,9 +33,9 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/linear_porquinho"
+            android:id="@+id/linear_ico_porquinho"
             android:layout_gravity="center"
-            android:background="@drawable/circle_solid_background"
+            android:background="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -72,10 +72,10 @@
     </LinearLayout>
 
     <LinearLayout
+        android:background="#000"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:id="@+id/linear_invista"
-        android:background="@drawable/button_invista_background"
         android:layout_width="250dp"
         android:layout_height="40dp">
 

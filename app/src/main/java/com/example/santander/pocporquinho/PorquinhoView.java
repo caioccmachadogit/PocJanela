@@ -10,5 +10,5 @@ public interface PorquinhoView {
 
     int getAjusteTelaHeight();
 
-    String getSegmento();
+    int getSegmento();
 }

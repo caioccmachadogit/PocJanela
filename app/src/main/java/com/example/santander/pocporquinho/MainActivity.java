@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final String segmento = "classico";
+        final int segmento = 0;
 
         PorquinhoComponent porquinhoComponent = new PorquinhoComponent(new PorquinhoView() {
             @Override
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public String getSegmento() {
+            public int getSegmento() {
                 return segmento;
             }
         }, this);

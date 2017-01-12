@@ -25,8 +25,10 @@ public class PorquinhoComponent {
 
     private RelativeLayout container;
     private Button button;
+    private View viewLine;
     private LinearLayout containerMensagem;
     private LinearLayout linearInvista;
+    private LinearLayout linearIcoPorquinho;
     private int actionBarButtonHeight;
     private int tamanhoTela70Perc;
     private int tamanhoTela30Perc;
@@ -35,6 +37,8 @@ public class PorquinhoComponent {
     private int touchHeight;
     private int countMove;
     private int buttonLinguaTopHeight;
+    private EnumSegmento enumSegmento;
+    private RelativeLayout containerComponentPorquinho;
 
     public PorquinhoComponent(PorquinhoView porquinhoView, Activity activity) {
         this.porquinhoView = porquinhoView;
@@ -42,9 +46,10 @@ public class PorquinhoComponent {
     }
 
     public void initComponent(){
-
+        containerComponentPorquinho = (RelativeLayout) mActivity.findViewById(R.id.container_component_porquinho);
         container = (RelativeLayout) mActivity.findViewById(R.id.container);
         containerMensagem = (LinearLayout) mActivity.findViewById(R.id.container_mensagem);
+        linearIcoPorquinho = (LinearLayout) mActivity.findViewById(R.id.linear_ico_porquinho);
         linearInvista = (LinearLayout) mActivity.findViewById(R.id.linear_invista);
         linearInvista.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,14 +60,46 @@ public class PorquinhoComponent {
 
         button = (Button) mActivity.findViewById(R.id.button);
         button.setOnTouchListener(onTouchListener());
+        viewLine = (View) mActivity.findViewById(R.id.linear_line);
 
         calcularMetricas();
 
         changeColorSegmento();
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     private void changeColorSegmento() {
 
+
+        enumSegmento = EnumSegmento.valueOf(porquinhoView.getSegmento());
+
+        if(enumSegmento != null){
+            switch (enumSegmento){
+
+                case USER_SELECT:
+                    setBackgroundAbaFechar(EnumSegmento.USER_SELECT);
+                    setBackgroundAbaAbrir(EnumSegmento.USER_SELECT);
+                    containerMensagem.setBackgroundResource(R.color.segmentoPorquinhoSelect);
+                    linearInvista.setBackgroundDrawable(mActivity.getResources().getDrawable(R.drawable.button_invista_background_select));
+                    linearIcoPorquinho.setBackgroundDrawable(mActivity.getResources().getDrawable(R.drawable.circle_solid_background_select));
+                    viewLine.setBackgroundResource(R.color.segmentoPorquinhoSelect);
+                    break;
+
+                case USER_CLASSIC:
+                    setBackgroundAbaFechar(EnumSegmento.USER_CLASSIC);
+                    setBackgroundAbaAbrir(EnumSegmento.USER_CLASSIC);
+                    containerMensagem.setBackgroundResource(R.color.segmentoPorquinhoClassic);
+                    linearInvista.setBackgroundDrawable(mActivity.getResources().getDrawable(R.drawable.button_invista_background_classic));
+                    linearIcoPorquinho.setBackgroundDrawable(mActivity.getResources().getDrawable(R.drawable.circle_solid_background_classic));
+                    viewLine.setBackgroundResource(R.color.segmentoPorquinhoClassic);
+                    break;
+
+            }
+        }
+        else{
+            containerComponentPorquinho.setVisibility(View.GONE);
+            Log.v("PORQUINHO OCULTADO", "segmento nao mapeado - "+porquinhoView.getSegmento());
+        }
     }
 
     private View.OnTouchListener onTouchListener() {
@@ -131,14 +168,14 @@ public class PorquinhoComponent {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void animacaoAbrirLayout() {
         animateLayoutParams(touchHeight, tamanhoTela70Perc);
-        button.setBackground(mActivity.getDrawable(R.drawable.aba_push_porquinho_fechar_select));
+        setBackgroundAbaFechar(enumSegmento);
         containerAberto = true;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void animacaoFecharLayout() {
         animateLayoutParams(touchHeight, buttonLinguaTopHeight);
-        button.setBackground(mActivity.getDrawable(R.drawable.aba_push_porquinho_abrir_select));
+        setBackgroundAbaAbrir(enumSegmento);
         containerAberto = false;
     }
 
@@ -196,4 +233,29 @@ public class PorquinhoComponent {
     }
 
 
+    public void setBackgroundAbaFechar(EnumSegmento enumSegmento) {
+        switch (enumSegmento){
+
+            case USER_CLASSIC:
+                button.setBackgroundDrawable(mActivity.getResources().getDrawable(R.drawable.aba_push_porquinho_fechar));
+                break;
+
+            case USER_SELECT:
+                button.setBackgroundDrawable(mActivity.getResources().getDrawable(R.drawable.aba_push_porquinho_fechar_select));
+                break;
+        }
+    }
+
+    public void setBackgroundAbaAbrir(EnumSegmento enumSegmento) {
+        switch (enumSegmento){
+
+            case USER_CLASSIC:
+                button.setBackgroundDrawable(mActivity.getResources().getDrawable(R.drawable.aba_push_porquinho_abrir));
+                break;
+
+            case USER_SELECT:
+                button.setBackgroundDrawable(mActivity.getResources().getDrawable(R.drawable.aba_push_porquinho_abrir_select));
+                break;
+        }
+    }
 }
